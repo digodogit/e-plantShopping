@@ -103,12 +103,18 @@ body {
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+    
     margin-top: 10px;
 }
 
 .product-button:hover {
     background-color: #c0392b;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.product-button[disabled] {
+    background-color: #6d6d6d;
+    cursor: not-allowed;
 }
 
 /* Pseudo-elements - Sale badge */
@@ -211,12 +217,13 @@ body {
     cursor: pointer;
   }
   
-  .product-button:hover {
+  .product-button:hover:enabled {
     background-color: #45a049;
   }
   
-  .product-button.added-to-cart {
-    background-color: grey; /* Grey when product is added */
+  .product-button[disabled] {
+    background-color: #6d6d6d; /* Grey when product is added */
+    cursor: not-allowed;
   }
   @media (max-width: 1200px) {
     .product-card {
