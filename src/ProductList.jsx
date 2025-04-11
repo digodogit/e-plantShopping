@@ -260,8 +260,12 @@ function ProductList({ onHomeClick }) {
         dispatch(addItem({name: plant.name, image: plant.image, cost: plant.cost}))
     }
     const handleRemoveFromCart = (plant) => {
-        setAddedToCart(()=> addedToCart.filter((item) => item.name !== plant.name))
+        setAddedToCart(()=> addedToCart.filter((item) => item !== plant.name))
+        console.log(addedToCart)
     }
+    useEffect(()=> {
+
+    },[addedToCart])
     return (
         <div>
             <div className="navbar" style={styleObj}>
@@ -293,7 +297,11 @@ function ProductList({ onHomeClick }) {
                                     <img className="product-image" src={plant.image} alt={plant.name} />
                                     <div className="product-title">{plant.name}</div>
                                     {/*Similarly like the above plant.name show other details like description and cost*/}
-                                    <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                                    <button  
+                                    className={`product-button ${addedToCart.includes(plant.name) ? 'disabled' : ''}`} 
+                                    onClick={() => handleAddToCart(plant)}
+                                    disabled={addedToCart.includes(plant.name)}
+                                    >Add to Cart</button>
                                 </div>
                                 ))}
                             </div>
